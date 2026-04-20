@@ -5,17 +5,14 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-# Caminho do arquivo
 caminho_arquivo = "C:\\Users\\Dinah\\Documents\\projects\\DataPulseLab\\dados\\pacientes_brutos.csv"
 
-# Ler dados
 dados = pd.read_csv(
     caminho_arquivo,
     encoding="utf-8"
 )
 
-# Validação de e-mail
-
+# Validação de email
 def validar_email(email):
 
     if pd.isna(email):
@@ -28,7 +25,6 @@ def validar_email(email):
 dados["email_valido"] = dados["email"].apply(validar_email)
 
 # Validação de CPF
-
 def validar_cpf(cpf):
 
     if pd.isna(cpf):
@@ -41,7 +37,6 @@ def validar_cpf(cpf):
 dados["cpf_valido"] = dados["cpf"].apply(validar_cpf)
 
 # Calculo de idade
-
 dados["data_nascimento"] = pd.to_datetime(
     dados["data_nascimento"],
     errors="coerce"
@@ -55,7 +50,6 @@ dados["idade"] = (
 )
 
 # Detecção de anomalias em idades
-
 dados["anomalia_idade"] = (
     (dados["idade"] < 0)
     |
@@ -63,7 +57,6 @@ dados["anomalia_idade"] = (
 )
 
 # Score sobre a qualidade de dados
-
 dados["score_qualidade"] = (
     dados["email_valido"].astype(int)
     +

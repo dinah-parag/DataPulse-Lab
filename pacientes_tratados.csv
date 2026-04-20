@@ -1,0 +1,9 @@
+nome,data_nascimento,sexo,telefone,email,cpf,email_valido,cpf_valido
+Maria Silva,1990-05-10,F,99999-0000,maria@email.com,123.456.789-00,True,True
+João Souza,1985-08-22,M,98888-1111,joao@email.com,987.654.321-00,True,True
+Ana Lima,2000-01-15,F,,ana@email.com,111.222.333-44,True,True
+Carlos Mendes,1975-12-03,M,97777-2222,,222.333.444-55,False,True
+Mariana Costa,2028-04-10,F,96666-3333,mariana@email.com,333.444.555-66,True,True
+Pedro Alves,-1995-03-10,M,95555-4444,pedro@email.com,444.555.666-77,True,True
+Fernanda Rocha,1992-07-19,F,94444-5555,fernanda@email,555.666.777-88,True,True
+Lucas Pereira,1998-11-30,M,93333-6666,lucas@email.com,123.456.789-00,True,True

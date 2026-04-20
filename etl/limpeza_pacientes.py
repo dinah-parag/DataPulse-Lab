@@ -15,12 +15,12 @@ dados = pd.read_csv(
 print("Registros antes da limpeza:")
 print(len(dados))
 
-# PADRONIZAR NOMES
+# Padronizar nomes
 dados["nome"] = dados["nome"].str.strip()
 dados["nome"] = dados["nome"].str.title()
 
 
-# TRATAR DATAS
+# Tratar dados
 dados["data_nascimento"] = pd.to_datetime(
     dados["data_nascimento"],
     errors="coerce"
@@ -36,18 +36,18 @@ dados = dados[
     dados["data_nascimento"] <= hoje
 ]
 
-# TRATAR TELEFONE
+# Tratar telefones
 dados["telefone"] = dados["telefone"].fillna(
     "Não informado"
 )
 
 
-# TRATAR EMAIL
+# Tratar emails
 dados["email"] = dados["email"].fillna(
     "Não informado"
 )
 
-# REMOVER CPF DUPLICADO
+# Remover CPFs suplicados
 dados = dados.drop_duplicates(
     subset=["cpf"]
 )

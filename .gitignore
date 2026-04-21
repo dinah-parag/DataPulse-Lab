@@ -1,0 +1,15 @@
+# ambiente
+.env
+
+# python
+__pycache__/
+*.pyc
+
+# logs
+*.log
+
+# dados
+*.csv
+
+# sistema
+.vscode/

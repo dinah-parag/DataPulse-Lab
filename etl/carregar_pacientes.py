@@ -10,6 +10,7 @@ sys.path.append(
 import pandas as pd
 from backend.database import conectar
 from backend.logs import registrar_log
+from backend.historico import salvar_historico_paciente
 
 import sys
 
@@ -108,6 +109,10 @@ try:
             str(linha["email"])
 
         )
+
+        cpf = str(linha["cpf"])
+
+        ssalvar_historico_paciente(cpf)
 
         cursor.execute(sql, valores)
 

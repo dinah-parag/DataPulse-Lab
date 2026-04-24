@@ -9,6 +9,7 @@ sys.path.append(
 
 import pandas as pd
 from backend.database import conectar
+from backend.logs import registrar_log
 
 import sys
 
@@ -25,6 +26,9 @@ try:
         sep=",",
         encoding="utf-8"
     )
+    dados["cpf"] = dados["cpf"].astype(str)
+    dados["telefone"] = dados["telefone"].astype(str)
+    registros_lidos = len(dados)
 
     # Padroniza nomes das colunas
     dados.columns = dados.columns.str.strip().str.lower()
@@ -54,6 +58,10 @@ try:
     dados_validos = dados[
         dados["data_valida"] == True
     ]
+
+    # Cria variáveis 
+    registros_validos = len(dados_validos)
+    registros_invalidos = invalidos
 
     # Converte formato para MySQL
     dados_validos["data_nascimento"] = dados_validos[
@@ -92,12 +100,12 @@ try:
 
         valores = (
 
-            linha["nome"],
-            linha["cpf"],
+            str(linha["nome"]),
+            str(linha["cpf"]),
             linha["data_nascimento"],
-            linha["sexo"],
-            linha["telefone"],
-            linha["email"]
+            str(linha["sexo"]),
+            str(linha["telefone"]),
+            str(linha["email"])
 
         )
 
@@ -115,6 +123,15 @@ try:
     print("Inseridos:", inseridos)
     print("Duplicados:", duplicados)
 
+    registrar_log(
+        registros_lidos,
+        registros_validos,
+        registros_invalidos,
+        inseridos,
+        duplicados,
+        "SUCESSO"
+)
+
     cursor.close()
     conexao.close()
 
@@ -122,3 +139,13 @@ except Exception as erro:
 
     print("Erro durante carga:")
     print(erro)
+
+    registrar_log(
+    0,
+    0,
+    0,
+    0,
+    0,
+    "ERRO"
+)
+    
